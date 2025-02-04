@@ -15,7 +15,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 
-    @Bean
+    @Bean   // Configuration 이 생성되면 Bean 이 같이 생성된다 (설정 객체이기 때문에)
     public Docket api() {
 
         return new Docket(DocumentationType.SWAGGER_2)
