@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.korit.springboot_study.mapper.InstructorStudyMapper">
+
+    <resultMap id="instructorResultMap" type="com.korit.springboot_study.entity.study.Instructor">
+        <id property="instructorId" column="instructor_id" />
+        <result property="instructorName" column="instructor_name" />
+    </resultMap>
+
+    <insert id="insertInstructor">
+        insert into instructor_tb
+        values (default, #{instructorName})
+    </insert>
+
+    <select id="selectInstructorsAll" resultMap="instructorResultMap">
+        select
+            instructor_id,
+            instructor_name
+        from
+            instructor_tb
+    </select>
+</mapper>
