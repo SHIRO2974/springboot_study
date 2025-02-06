@@ -16,6 +16,12 @@
         values (default, #{majorName})
     </insert>
 
+    <update id="updateMajor" keyProperty="majorId" useGeneratedKeys="true">
+        update major_tb
+        set major_name = #{majorName}
+        where major_id = #{majorId}
+    </update>
+
     <select id="selectMajorsAll" resultMap="majorResultMap">
         select
             major_id,

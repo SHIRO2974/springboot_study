@@ -6,8 +6,15 @@ import com.korit.springboot_study.exception.CustomDuplicateKeyException;
 import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import javax.validation.ConstraintViolationException;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestControllerAdvice   // 전역 예외 처리 어노테이션
 public class GlobalRestControllerAdvice {   // 예외가 발생하면 Advice 로 이동
@@ -22,5 +29,30 @@ public class GlobalRestControllerAdvice {   // 예외가 발생하면 Advice 로
     public ResponseEntity<BodRequestResponseDto<?>> duplicateKey(CustomDuplicateKeyException e) {   // 중복 데이터가 있다면
 
         return ResponseEntity.status(400).body(new BodRequestResponseDto<>(e.getErrors()));  // 예외 발생 응답
+    }
+
+    public ResponseEntity<BodRequestResponseDto<?>> validation(ConstraintViolationException e) {
+
+        return ResponseEntity.status(400).body(new BodRequestResponseDto<>
+                (e.getConstraintViolations()
+                        .stream().map(constraintViolation -> Map.of(constraintViolation.getPropertyPath(), constraintViolation.getMessage()))
+                        .collect(Collectors.toList())
+                ));
+    }
+
+    @ExceptionHandler(value = MethodArgumentNotValidException.class)
+    public ResponseEntity<BodRequestResponseDto<?>> validation(MethodArgumentNotValidException e) {
+
+        List<Map<String, String>> errorMap = null;
+        BindingResult bindingResult = e.getBindingResult();
+
+        if (bindingResult.hasErrors()) {    // 에러들이 있는지 확인
+
+            bindingResult.getFieldErrors().stream()
+                    // 에러가 있으면, 필드 이름과 메시지를 리스트로 추가
+                    .map(fieldError -> Map.of(fieldError.getField(), fieldError.getDefaultMessage()))
+                    .collect(Collectors.toList());
+        }
+        return ResponseEntity.status(400).body(new BodRequestResponseDto<>(errorMap));
     }
 }

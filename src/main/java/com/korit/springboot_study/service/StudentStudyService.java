@@ -1,6 +1,7 @@
 package com.korit.springboot_study.service;
 
 import com.korit.springboot_study.dto.request.study.ReqAddMajorDto;
+import com.korit.springboot_study.dto.request.study.ReqUpdateMajorDto;
 import com.korit.springboot_study.dto.response.common.NotFoundResponseDto;
 import com.korit.springboot_study.dto.response.common.ResponseDto;
 import com.korit.springboot_study.dto.response.common.SuccessResponseDto;
@@ -20,10 +21,10 @@ public class StudentStudyService {
     @Autowired
     private StudentStudyRepository studentStudyRepository;
 
-    public SuccessResponseDto<List<Major>> getMajorsAll() throws NotFoundException{
+    public SuccessResponseDto<List<Major>> getMajorsAll() throws NotFoundException {
 
-       List<Major> foundMajors = studentStudyRepository.findAllMajor()  // Optional 타입
-               .orElseThrow(() -> new NotFoundException("학과 데이터가 존재하지 않습니다.")); // 예외 발생
+        List<Major> foundMajors = studentStudyRepository.findAllMajor()  // Optional 타입
+                .orElseThrow(() -> new NotFoundException("학과 데이터가 존재하지 않습니다.")); // 예외 발생
 
         return new SuccessResponseDto<>(foundMajors); // foundMajor 가 비어 있지 않다면 SuccessResponseDto 호출
     }
@@ -35,5 +36,17 @@ public class StudentStudyService {
                 studentStudyRepository.saveMajor(new Major(0, reqAddMajorDto.getMajorName()))
                         .orElseThrow()
         );
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    // 사용자에게 ID를 받아 majorName 을 수정
+    public SuccessResponseDto<Major> updateMajor(int majorId, ReqUpdateMajorDto reqUpdateMajorDto) throws NotFoundException, DuplicateKeyException {
+
+        // major 객체로 변환 후 리턴
+        Major modifidMajor = studentStudyRepository.updateMajor(new Major(majorId, reqUpdateMajorDto.getMajorName()))
+                .orElseThrow(() -> new NotFoundException("해당 학과 ID는 존재하지 않습니다."));
+
+
+        return new SuccessResponseDto<>(modifidMajor);
     }
 }
