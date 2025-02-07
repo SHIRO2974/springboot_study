@@ -1,9 +1,7 @@
-package com.korit.springboot_study.controller;
+package com.korit.springboot_study.controller.Book;
 
 import com.korit.springboot_study.dto.response.common.SuccessResponseDto;
-import com.korit.springboot_study.entity.study.Book;
-import com.korit.springboot_study.entity.study.Category;
-import com.korit.springboot_study.service.BookService;
+import com.korit.springboot_study.entity.study.Book.Category;
 import com.korit.springboot_study.service.CategoryService;
 import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.javassist.NotFoundException;

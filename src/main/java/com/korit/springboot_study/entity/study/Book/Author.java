@@ -1,4 +1,4 @@
-package com.korit.springboot_study.entity.study;
+package com.korit.springboot_study.entity.study.Book;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,10 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Book {
+public class Author {
 
-    private int bookId;
     private int authorId;
-    private int publisherId;
-    private String bookName;
+    private String authorName;
 }

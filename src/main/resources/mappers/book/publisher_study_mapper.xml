@@ -4,9 +4,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.korit.springboot_study.mapper.PublisherMapper">
+<mapper namespace="com.korit.springboot_study.mapper.Book.PublisherMapper">
 
-    <resultMap id="publisherResultMap" type="com.korit.springboot_study.entity.study.Publisher">
+    <resultMap id="publisherResultMap" type="com.korit.springboot_study.entity.study.Book.Publisher">
         <id property="publisherId" column="publisher_id" />
         <result property="publisherName" column="publisher_name" />
     </resultMap>

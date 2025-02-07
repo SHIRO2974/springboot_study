@@ -1,7 +1,7 @@
-package com.korit.springboot_study.repository;
+package com.korit.springboot_study.repository.Book;
 
-import com.korit.springboot_study.entity.study.Category;
-import com.korit.springboot_study.mapper.CategoryMapper;
+import com.korit.springboot_study.entity.study.Book.Category;
+import com.korit.springboot_study.mapper.Book.CategoryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

@@ -1,10 +1,8 @@
 package com.korit.springboot_study.service;
 
 import com.korit.springboot_study.dto.response.common.SuccessResponseDto;
-import com.korit.springboot_study.entity.study.Author;
-import com.korit.springboot_study.entity.study.Publisher;
-import com.korit.springboot_study.repository.AuthorRepository;
-import com.korit.springboot_study.repository.PublisherRepository;
+import com.korit.springboot_study.entity.study.Book.Publisher;
+import com.korit.springboot_study.repository.Book.PublisherRepository;
 import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

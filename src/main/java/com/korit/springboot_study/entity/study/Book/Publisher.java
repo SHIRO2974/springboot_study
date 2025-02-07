@@ -1,4 +1,4 @@
-package com.korit.springboot_study.entity.study;
+package com.korit.springboot_study.entity.study.Book;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

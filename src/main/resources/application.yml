@@ -12,3 +12,5 @@ spring:
 mybatis:
   mapper-locations:
     - /mappers/*.xml
+    - /mappers/book/*.xml
+    - /mappers/user/*.xml

@@ -1,6 +1,6 @@
-package com.korit.springboot_study.repository;
-import com.korit.springboot_study.entity.study.Publisher;
-import com.korit.springboot_study.mapper.PublisherMapper;
+package com.korit.springboot_study.repository.Book;
+import com.korit.springboot_study.entity.study.Book.Publisher;
+import com.korit.springboot_study.mapper.Book.PublisherMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

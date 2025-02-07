@@ -1,8 +1,8 @@
 package com.korit.springboot_study.service;
 
 import com.korit.springboot_study.dto.response.common.SuccessResponseDto;
-import com.korit.springboot_study.entity.study.Category;
-import com.korit.springboot_study.repository.CategoryRepository;
+import com.korit.springboot_study.entity.study.Book.Category;
+import com.korit.springboot_study.repository.Book.CategoryRepository;
 import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

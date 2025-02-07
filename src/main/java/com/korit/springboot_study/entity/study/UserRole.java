@@ -9,8 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Category {
+public class UserRole {
 
-    private int categoryId;
-    private String categoryName;
+    private int userRoleId;
+    private int userId;
+    private int roleId;
 }

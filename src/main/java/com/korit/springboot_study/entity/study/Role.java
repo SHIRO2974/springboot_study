@@ -6,11 +6,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class Author {
+public class Role {
 
-    private int authorId;
-    private String authorName;
+    int roleId;
+    String roleName;
 }

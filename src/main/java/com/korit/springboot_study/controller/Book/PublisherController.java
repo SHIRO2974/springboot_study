@@ -1,8 +1,8 @@
-package com.korit.springboot_study.controller;
+package com.korit.springboot_study.controller.Book;
 
 import com.korit.springboot_study.dto.response.common.SuccessResponseDto;
-import com.korit.springboot_study.entity.study.Book;
-import com.korit.springboot_study.service.BookService;
+import com.korit.springboot_study.entity.study.Book.Publisher;
+import com.korit.springboot_study.service.PublisherService;
 import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,15 +15,15 @@ import java.util.List;
 
 @RestController
 @Validated
-public class BookController {
+public class PublisherController {
 
     @Autowired
-    private BookService bookService;
+    private PublisherService publisherService;
 
-    @GetMapping("/api/study/book")
-    @ApiOperation(value = "책 전체 조회")
-    public ResponseEntity<SuccessResponseDto<List<Book>>> getAllBooks() throws NotFoundException {
+    @GetMapping("/api/study/publisher")
+    @ApiOperation(value = "출판사 전체 조회")
+    public ResponseEntity<SuccessResponseDto<List<Publisher>>> getAllPublisher() throws NotFoundException {
 
-        return ResponseEntity.ok().body(bookService.getBookAll());
+        return ResponseEntity.ok().body(publisherService.getPublisherAll());
     }
 }
