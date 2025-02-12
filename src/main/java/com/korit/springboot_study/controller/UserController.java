@@ -1,6 +1,6 @@
 package com.korit.springboot_study.controller;
 
-import com.korit.springboot_study.dto.ReqAddUserDto;
+import com.korit.springboot_study.dto.request.study.ReqAddUserDto;
 import com.korit.springboot_study.dto.response.common.SuccessResponseDto;
 import com.korit.springboot_study.entity.study.User;
 import com.korit.springboot_study.service.UserService;

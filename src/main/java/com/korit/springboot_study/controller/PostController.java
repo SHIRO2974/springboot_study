@@ -1,5 +1,6 @@
 package com.korit.springboot_study.controller;
 
+import com.korit.springboot_study.aspect.TimerAOP;
 import com.korit.springboot_study.dto.request.study.ReqCreatePostDto;
 import com.korit.springboot_study.dto.response.common.SuccessResponseDto;
 import com.korit.springboot_study.entity.study.Post;
@@ -29,6 +30,7 @@ public class PostController {
         return ResponseEntity.created(URI.create("")).body(new SuccessResponseDto<>(postService.createPost(reqCreatePostDto)));
     }
 
+    @TimerAOP   // 단일 AOP 적용
     @GetMapping("/api/post/{postId}")
     public ResponseEntity<SuccessResponseDto<Post>> getPost(@Valid @PathVariable int postId) throws NotFoundException {
 
@@ -45,9 +47,12 @@ public class PostController {
     }
 
     @PostMapping("/api/post/{postId}/like")
-    public ResponseEntity<SuccessResponseDto<Post>> likePost(@PathVariable int postId) {
+    public ResponseEntity<SuccessResponseDto<Boolean>> likePost(@PathVariable int postId) throws Exception {
 
-        return ResponseEntity.ok().body(new SuccessResponseDto<>(null));
+        int userId = 2;
+
+
+        return ResponseEntity.ok().body(new SuccessResponseDto<>(postService.likePost(postId, userId)));
     }
 
     @DeleteMapping("/api/post/{postId}/like")

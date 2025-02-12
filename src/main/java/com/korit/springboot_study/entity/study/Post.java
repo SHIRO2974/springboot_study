@@ -17,8 +17,8 @@ public class Post {
     private int userId;
     private String title;
     private String content;
-    private LocalDateTime createdTime;
-    private LocalDateTime updatedTime;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     private int likeCount;
 

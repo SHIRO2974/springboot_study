@@ -10,11 +10,19 @@
         <result property="likeCount" column="like_count" />
     </resultMap>
 
-    <insert id="insert">
+    <insert id="insert" >
         insert into post_like_tb
-        values(default, #{postId}, #{userId}, now())
+        select
+            iv.post_like_id,
+            iv.post_id,
+            iv.user_id,
+            iv.created_at
+        from
+            (select 0 as post_like_id, #{postId} as post_id, #{userId} as user_id, now() as created_at) iv
+            left outer join post_like_tb plt on(plt.post_id = iv.post_id and plt.user_id = iv.user_id)
+        where
+            plt.post_like_id is null
     </insert>
-
     <delete id="deleteByPostIdAndUserId">
         delete
         from
