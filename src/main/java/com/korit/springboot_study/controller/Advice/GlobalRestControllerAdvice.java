@@ -4,13 +4,13 @@ import com.korit.springboot_study.dto.response.common.BodRequestResponseDto;
 import com.korit.springboot_study.dto.response.common.NotFoundResponseDto;
 import com.korit.springboot_study.exception.CustomDuplicateKeyException;
 import org.apache.ibatis.javassist.NotFoundException;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.naming.AuthenticationException;
 import javax.validation.ConstraintViolationException;
 import java.util.List;
 import java.util.Map;
@@ -55,4 +55,9 @@ public class GlobalRestControllerAdvice {   // 예외가 발생하면 Advice 로
         }
         return ResponseEntity.status(400).body(new BodRequestResponseDto<>(errorMap));
     }
+    @ExceptionHandler(value = AuthenticationException.class)
+    public ResponseEntity<BodRequestResponseDto<?>> signInError(AuthenticationException e) {
+        return ResponseEntity.status(403).body(new BodRequestResponseDto<>(e.getMessage()));
+    }
+
 }

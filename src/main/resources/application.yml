@@ -2,11 +2,10 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
-
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
     url: jdbc:mysql://localhost:3306/study
+    username: root
     password: 1q2w3e4r!
 
 mybatis:
@@ -16,7 +15,10 @@ mybatis:
     - /mappers/user/*.xml
     - /mappers/post/*.xml
 
-  logging:
-    config: classpath:log4j2.xml
-    file:
-      path: logs
+logging:
+  config: classpath:log4j2.xml
+  file:
+    path: logs
+
+jwt:
+  secret: f35365d43e1d6d8487eeaef8ea453abe7e8d6d03f1b680e53ca88c750a4c5a1ff6e82494eea0502b1efe42855e1b4a640c0717a2beef8c9ab68f5aa7ad1d3ff9381dc62f019e1ccdbe13138de453adab3286a5be179aeb3a771b6c477b2cccc89eb6fca11c086104b1ddd21310856d299342b227f0f3d4fd78466c38ee602379ceb901031db6be9b76b105c830701e77f0337203cf9f137cd10f5f9edb9d41c9ba1618d4e54c236f85d12d4b61ca3bedd0363ba37754d4d3dcf8795058bf8151497fbd560142ba5b4eeffe655c5279636e841128899dca7775dcdb042e686aaf50cff75493ff3e9202d84aa1f39c872e7f45287ee23fc005ea6d2f7aba42e2e3
