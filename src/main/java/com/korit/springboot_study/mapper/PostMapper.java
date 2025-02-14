@@ -17,4 +17,6 @@ public interface PostMapper {
             @Param("LimitCount") int limitCount,
             @Param("keyword") String keyword);
 
+
+
 }
