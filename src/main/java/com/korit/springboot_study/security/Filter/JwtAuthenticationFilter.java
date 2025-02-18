@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.List;
 
 @Component
 public class JwtAuthenticationFilter implements Filter {
@@ -41,11 +42,12 @@ public class JwtAuthenticationFilter implements Filter {
 
     private void setJwtAuthentication(String bearerToken) {
 
-        Claims claims = jwtProvider.parseToken(bearerToken);    // 토큰 검증
+        String accessToken = jwtProvider.removeBearer(bearerToken);
+        Claims claims = jwtProvider.parseToken(accessToken);    // 토큰 검증
 
         if(claims == null) {
 
-            throw new JwtException("Invalid JWT token");
+            return;
         }
 
         int userId = Integer.parseInt(claims.get("userId").toString()); // Claims 을 int 타입으로 변환

@@ -52,7 +52,7 @@ public class JwtProvider {
             JwtParser parser = Jwts.parserBuilder()
                     .setSigningKey(key)
                     .build();
-            claims = parser.parseClaimsJws(removeBearer(token)).getBody();
+            claims = parser.parseClaimsJws(token).getBody();
 
         } catch (Exception e) {
 
@@ -62,7 +62,7 @@ public class JwtProvider {
     }
 
     // Authorization -> AccessToken(Bearer ?????.?????.?????)
-    private String removeBearer(String bearerToken) {
+    public String removeBearer(String bearerToken) {
 
         String token = null;
         final String BEARER_KEYWORD = "Bearer ";
@@ -73,5 +73,4 @@ public class JwtProvider {
         }
         return token;
     }
-
 }
